@@ -3,15 +3,6 @@
     <ion-title>
       Profile
     </ion-title>
-    <ion-buttons slot="primary">
-      <ion-button routerLink="/add-friend"><ion-icon name="add"></ion-icon></ion-button>
-    </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button routerLink="/show-friend"><ion-icon name="accessibility-outline"></ion-icon></ion-button>
-    </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button routerLink="/home-map"><ion-icon name="image-outline"></ion-icon></ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -28,11 +19,24 @@
       </ion-col>
     </ion-row>
     <ion-row>
+      <ion-button size="small" (click)="upload()">
+        <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+        <ion-label>Upload</ion-label>
+      </ion-button>
+      <ion-button size="small" (click)="getPicture('gallery')">
+        <ion-icon name="image" slot="start"></ion-icon>
+        <ion-label>Gallery</ion-label>
+      </ion-button>
+  
+      <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)"/>
       <ion-card *ngIf="photo">
         <ion-card-content>
           <img class="profile-picture" [src]="photo">
         </ion-card-content>
       </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-label>Kesan Pesan : Karena Online Kurang asik (2)</ion-label>
     </ion-row>
   </ion-grid>
 </ion-content>
