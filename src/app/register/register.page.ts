@@ -90,6 +90,7 @@ export class RegisterPage implements OnInit {
       saveToGallery: true
     });
     this.dataUrl = image.dataUrl;
+    console.log(this.dataUrl);
     this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
   }
   
@@ -105,6 +106,8 @@ export class RegisterPage implements OnInit {
 
     reader.onload = () => {
       this.photo = reader.result.toString();
+      this.dataUrl = reader.result.toString();
+      console.log(this.dataUrl);
     };
     reader.readAsDataURL(file);
   }
@@ -121,10 +124,11 @@ export class RegisterPage implements OnInit {
           this.successMessage = '';
         });
     value.password = null;
-    this.upload(value.nDepan);
+    
     console.log(this.dataUrl);
     this.userSrv.createUser(value,this.dataUrl).then(res => {
       console.log(res);
+      this.upload(value.nDepan);
       this.router.navigateByUrl('/login');
     }).catch(error => console.log(error));
   }
@@ -145,6 +149,7 @@ export class RegisterPage implements OnInit {
   }
 
   upload(nDepan: string){
+    console.log(this.dataUrl);
         const file = this.dataURLtoFile(this.dataUrl, 'file');
         console.log('file :', file);
         const filePath = 'photos/'+nDepan+'.jpg';
