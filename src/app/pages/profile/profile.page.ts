@@ -106,6 +106,7 @@ export class ProfilePage implements OnInit {
 
     reader.onload = () => {
       this.photo = reader.result.toString();
+      this.dataUrl = reader.result.toString();
     };
     reader.readAsDataURL(file);
   }
